@@ -5,7 +5,6 @@ class GetRouteService
 
   def perform
     uri = URI(api_url)
-    # raise uri.query.inspect
     uri.query = URI.encode_www_form(request_params)
     result = Net::HTTP.get_response(uri)
     return JSON.parse(result.body) if result.is_a?(Net::HTTPSuccess)
